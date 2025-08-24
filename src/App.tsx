@@ -18,9 +18,16 @@ function App() {
 
   useEffect(() => {
     console.log("Rozpoczynam fetch...");
-    fetch("/api/about")
+
+    // Użyj proxy lokalnie, Vercel Function na produkcji
+    const apiUrl = import.meta.env.DEV ? "/api/about" : "/api/proxy";
+
+    fetch(apiUrl)
       .then((response) => {
         console.log("Odpowiedź:", response);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
         return response.json();
       })
       .then((result) => {
