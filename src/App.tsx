@@ -19,8 +19,15 @@ function App() {
   useEffect(() => {
     console.log("Rozpoczynam fetch...");
 
-    // Użyj proxy lokalnie, Vercel Function na produkcji
-    const apiUrl = import.meta.env.DEV ? "/api/about" : "/api/proxy";
+    // Automatycznie wykryj czy jesteśmy lokalnie czy na produkcji
+    const isLocalhost =
+      window.location.hostname === "localhost" ||
+      window.location.hostname === "127.0.0.1";
+    const apiUrl = isLocalhost ? "/api/about" : "/api/proxy";
+
+    console.log("Hostname:", window.location.hostname);
+    console.log("Jest localhost:", isLocalhost);
+    console.log("Używam URL:", apiUrl);
 
     fetch(apiUrl)
       .then((response) => {
