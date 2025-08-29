@@ -1,10 +1,12 @@
-import type { AboutData } from "../types/about";
+import { useAbout } from "../hooks/useAbout";
 
-interface AboutProps {
-  about: AboutData;
-}
+export default function About() {
+  const { about, fallbackText } = useAbout();
 
-export default function About({ about }: AboutProps) {
+  if (!about) {
+    return <>{fallbackText && <div>{fallbackText}</div>}</>;
+  }
+
   return (
     <>
       <p>{about.name}</p>

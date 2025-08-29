@@ -9,5 +9,3 @@ export interface AboutData {
     html_url: string;
     readme: string;
 }
-
-

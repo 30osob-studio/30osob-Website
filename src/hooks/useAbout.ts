@@ -29,5 +29,3 @@ export function useAbout() {
 
     return { about, fallbackText };
 }
-
-
