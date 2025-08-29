@@ -6,15 +6,10 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api/about': {
+      '/api': {
         target: 'https://api-ix11.onrender.com',
         changeOrigin: true,
-        rewrite: (path) => path.replace('/api/about', '/about')
-      },
-      '/api/repos': {
-        target: 'https://api-ix11.onrender.com',
-        changeOrigin: true,
-        rewrite: (path) => path.replace('/api/repos', '/repos')
+        rewrite: (path) => path.replace(/^\/api/, '')
       }
     }
   }

@@ -12,9 +12,9 @@ export default function Languages({ languages }: LanguagesProps) {
   return (
     <ul>
       {Object.entries(languages).map(([name, bytes]) => (
-        <ul>
+        <li key={name}>
           {name}: {bytes}
-        </ul>
+        </li>
       ))}
     </ul>
   );
