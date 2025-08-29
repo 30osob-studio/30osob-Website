@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
 import type { AboutData } from "../types/about";
+import { buildApiUrl } from "../config";
 
 export function useAbout() {
     const [about, setAbout] = useState<AboutData | null>(null);
     const [fallbackText, setFallbackText] = useState<string>("");
 
     useEffect(() => {
-        const isLocalhost =
-            window.location.hostname === "localhost" ||
-            window.location.hostname === "127.0.0.1";
-        const apiUrl = isLocalhost ? "/api/about" : "/api/proxy";
+        const url = buildApiUrl("/about");
 
-        fetch(apiUrl)
+        fetch(url)
             .then(async (response) => {
                 const text = await response.text();
                 try {
