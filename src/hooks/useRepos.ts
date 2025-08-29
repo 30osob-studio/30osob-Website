@@ -7,7 +7,7 @@ export function useRepos() {
     const [fallbackText, setFallbackText] = useState<string>("");
 
     useEffect(() => {
-        const url = buildApiUrl("/repos");
+        const url = buildApiUrl("/owner/repos");
 
         fetch(url)
             .then(async (response) => {
