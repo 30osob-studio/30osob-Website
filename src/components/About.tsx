@@ -9,7 +9,7 @@ export default function About() {
 
   return (
     <>
-      <p>{about.name}</p>
+      <p className="text-3xl font-bold underline">{about.name}</p>
       <p>{about.description}</p>
       <p>{about.location}</p>
       <p>{about.email}</p>
@@ -21,5 +21,3 @@ export default function About() {
     </>
   );
 }
-
-
