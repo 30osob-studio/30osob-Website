@@ -8,8 +8,8 @@ export default function About() {
   }
 
   return (
-    <>
-      <p className="text-3xl font-bold underline">{about.name}</p>
+    <div className="border-2 m-4 p-4">
+      <p>{about.name}</p>
       <p>{about.description}</p>
       <p>{about.location}</p>
       <p>{about.email}</p>
@@ -18,6 +18,6 @@ export default function About() {
       <p>{about.html_url}</p>
       <p>{about.avatar_url}</p>
       <p>{about.readme}</p>
-    </>
+    </div>
   );
 }

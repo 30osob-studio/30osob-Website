@@ -10,7 +10,7 @@ export default function Contributors({ contributors }: ContributorsProps) {
   }
 
   return (
-    <ul>
+    <ul className="border-2 m-4 p-4">
       {contributors.map((c) => (
         <li key={c.login}>
           <p>{c.login}</p>

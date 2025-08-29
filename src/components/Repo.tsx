@@ -8,7 +8,7 @@ interface RepoProps {
 
 export default function Repo({ repo }: RepoProps) {
   return (
-    <ul>
+    <ul className="border-2 m-4 p-4">
       <p>{repo.name}</p>
       <p>{repo.html_url}</p>
       <p>{repo.description}</p>

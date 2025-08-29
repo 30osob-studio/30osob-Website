@@ -8,7 +8,7 @@ export default function Owner() {
   }
 
   return (
-    <>
+    <div className="border-2 m-4 p-4">
       <p>{owner.avatar_url}</p>
       <p>{owner.html_url}</p>
       <p>{owner.name}</p>
@@ -19,6 +19,6 @@ export default function Owner() {
       <p>{owner.twitter_username}</p>
       <p>{owner.public_repos}</p>
       <p>{owner.readme}</p>
-    </>
+    </div>
   );
 }

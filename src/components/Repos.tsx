@@ -9,10 +9,10 @@ export default function Repos() {
   }
 
   return (
-    <>
+    <div className="border-2 m-4 p-4">
       {repos.map((repo) => (
         <Repo key={repo.name} repo={repo} />
       ))}
-    </>
+    </div>
   );
 }
