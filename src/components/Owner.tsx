@@ -8,7 +8,7 @@ export default function Owner() {
   }
 
   return (
-    <div className="border-2 m-4 p-4">
+    <div className="border-2 m-4 p-4 break-words">
       <p>{owner.avatar_url}</p>
       <p>{owner.html_url}</p>
       <p>{owner.name}</p>

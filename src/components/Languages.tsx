@@ -10,7 +10,7 @@ export default function Languages({ languages }: LanguagesProps) {
   }
 
   return (
-    <ul className="border-2 m-4 p-4">
+    <ul className="border-2 m-4 p-4 break-words">
       {Object.entries(languages).map(([name, bytes]) => (
         <li key={name}>
           {name}: {bytes}

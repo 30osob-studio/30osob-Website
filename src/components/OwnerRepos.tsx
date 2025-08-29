@@ -11,7 +11,7 @@ export default function OwnerRepos(): JSX.Element {
   }
 
   return (
-    <div className="border-2 m-4 p-4">
+    <div className="border-2 m-4 p-4 break-words">
       {repos.map((repo: RepoItem) => (
         <Repo key={repo.name} repo={repo} />
       ))}

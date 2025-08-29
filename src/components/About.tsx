@@ -8,7 +8,7 @@ export default function About() {
   }
 
   return (
-    <div className="border-2 m-4 p-4">
+    <div className="border-2 m-4 p-4 break-words">
       <p>{about.name}</p>
       <p>{about.description}</p>
       <p>{about.location}</p>
