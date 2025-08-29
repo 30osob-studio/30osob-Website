@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import type { ReposData } from "../types/repos";
 import { buildApiUrl } from "../config";
 
-export function useRepos() {
+export function useOwnerRepos() {
     const [repos, setRepos] = useState<ReposData | null>(null);
     const [fallbackText, setFallbackText] = useState<string>("");
 
     useEffect(() => {
-        const url = buildApiUrl("/repos");
+        const url = buildApiUrl("/owner/repos");
 
         fetch(url)
             .then(async (response) => {
@@ -27,3 +27,5 @@ export function useRepos() {
 
     return { repos, fallbackText };
 }
+
+

@@ -1,6 +1,7 @@
 import About from "./components/About";
 import Repos from "./components/Repos";
 import Owner from "./components/Owner";
+import OwnerRepos from "./components/OwnerRepos";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <About />
       <Repos />
       <Owner />
+      <OwnerRepos />
     </>
   );
 }
