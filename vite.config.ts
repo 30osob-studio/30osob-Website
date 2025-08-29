@@ -10,6 +10,11 @@ export default defineConfig({
         target: 'https://api-ix11.onrender.com',
         changeOrigin: true,
         rewrite: (path) => path.replace('/api/about', '/about')
+      },
+      '/api/repos': {
+        target: 'https://api-ix11.onrender.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace('/api/repos', '/repos')
       }
     }
   }
