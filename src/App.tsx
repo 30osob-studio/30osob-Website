@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import "./App.css";
 
-interface ApiData {
+export interface AboutData {
   avatar_url: string;
   description: string;
   name: string;
@@ -14,70 +13,50 @@ interface ApiData {
 }
 
 function App() {
-  const [data, setData] = useState<ApiData | null>(null);
+  const [about, setAbout] = useState<AboutData | null>(null);
+  const [fallbackText, setFallbackText] = useState<string>("");
 
   useEffect(() => {
-    console.log("Rozpoczynam fetch...");
-
-    // Automatycznie wykryj czy jesteśmy lokalnie czy na produkcji
     const isLocalhost =
       window.location.hostname === "localhost" ||
       window.location.hostname === "127.0.0.1";
     const apiUrl = isLocalhost ? "/api/about" : "/api/proxy";
 
-    console.log("Hostname:", window.location.hostname);
-    console.log("Jest localhost:", isLocalhost);
-    console.log("Używam URL:", apiUrl);
-
     fetch(apiUrl)
-      .then((response) => {
-        console.log("Odpowiedź:", response);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+      .then(async (response) => {
+        const text = await response.text();
+        try {
+          const parsed = JSON.parse(text) as AboutData;
+          setAbout(parsed);
+        } catch {
+          setAbout(null);
+          setFallbackText(text);
         }
-        return response.json();
       })
-      .then((result) => {
-        console.log("Dane z API:", result);
-        setData(result);
-      })
-      .catch((error) => {
-        console.error("Błąd:", error);
+      .catch(() => {
+        setAbout(null);
       });
   }, []);
 
+  if (about) {
+    return (
+      <>
+        <p>{about.name}</p>
+        <p>{about.description}</p>
+        <p>{about.location}</p>
+        <p>{about.email}</p>
+        <p>{about.twitter_username}</p>
+        <p>{about.public_repos}</p>
+        <p>{about.html_url}</p>
+        <p>{about.avatar_url}</p>
+        <p>{about.readme}</p>
+      </>
+    );
+  }
+
   return (
     <>
-      <div>
-        <h1>Dane z API</h1>
-        {data && (
-          <div>
-            <h2>{data.name}</h2>
-            <p>
-              <strong>Opis:</strong> {data.description}
-            </p>
-            <p>
-              <strong>Lokalizacja:</strong> {data.location}
-            </p>
-            <p>
-              <strong>Email:</strong> {data.email}
-            </p>
-            <p>
-              <strong>Repozytoria:</strong> {data.public_repos}
-            </p>
-            <a href={data.html_url} target="_blank" rel="noopener noreferrer">
-              Profil GitHub
-            </a>
-            <br />
-            <img
-              src={data.avatar_url}
-              alt="Avatar"
-              style={{ width: 100, height: 100, borderRadius: "50%" }}
-            />
-          </div>
-        )}
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-      </div>
+      <div>{fallbackText}</div>
     </>
   );
 }
