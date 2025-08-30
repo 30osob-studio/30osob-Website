@@ -16,28 +16,28 @@ export default function Repo({ repo }: RepoProps) {
   });
 
   return (
-    <div className="m-4 p-4 bg-green-500 break-words w-80 h-100 rounded-xl flex flex-col">
+    <div className="m-4 p-4 bg-gray-800 break-words w-80 h-100 rounded-xl flex flex-col">
       <p className="bg-yellow-500">{repo.readme}</p>
-      <div className="flex justify-between w-full items-center">
-        <p className="text-xl text-white">{repo.name}</p>
-        <a href={repo.homepage ?? undefined} target="_blank">
-          <LinkIcon size={24} color="white"></LinkIcon>
-        </a>
-      </div>
+      <div className="flex flex-col gap-4">
+        <div className="flex justify-between w-full items-center">
+          <p className="text-xl text-white">{repo.name}</p>
+          <a href={repo.homepage ?? undefined} target="_blank">
+            <LinkIcon size={24} color="white"></LinkIcon>
+          </a>
+        </div>
 
-      <p>{repo.description}</p>
+        <p className="text-gray-400 truncate ... ">{repo.description}</p>
 
-      <p>{creationDate}</p>
+        <p className="text-gray-400">Created at: {creationDate}</p>
 
-      <p>Last change:{updatedDate}</p>
+        <p className="text-gray-400">Last change: {updatedDate}</p>
 
-      <div className="flex flex-col gap-2">
         <Languages languages={repo.languages} />
-        <div className="border border-blue-500 flex flex-row gap-4">
+        <div className="flex flex-row gap-2.5">
           {repo.topics.map((topic) => (
             <div
               key={topic}
-              className="flex items-center justify-center rounded-full bg-blue-500 text-white py-0.5 px-3 border-2 border-white pb-1 text-sm"
+              className="flex items-center justify-center rounded-full bg-[rgba(0,136,255,0.34)] text-[rgba(41,154,253,1)] py-0.5 px-3 border-2 border-[rgba(41, 154, 253, 1)] pb-1 text-sm"
             >
               {topic}
             </div>
