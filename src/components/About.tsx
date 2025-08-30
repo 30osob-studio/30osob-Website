@@ -1,4 +1,5 @@
 import { useAbout } from "../hooks/useAbout";
+import { GitHubIcon, MailIcon } from "../components/icons";
 
 export default function About() {
   const { about, fallbackText } = useAbout();
@@ -8,16 +9,28 @@ export default function About() {
   }
 
   return (
-    <div className="border-2 m-4 p-4 break-words">
-      <p>{about.name}</p>
+    <div className="">
+      <img
+        className="rounded-full w-50 h-50"
+        src={about.avatar_url}
+        alt={about.name}
+      />
       <p>{about.description}</p>
       <p>{about.location}</p>
-      <p>{about.email}</p>
+
+      <div className="flex flex-row gap-1">
+        <MailIcon></MailIcon>
+        {about.email}
+      </div>
       <p>{about.twitter_username}</p>
-      <p>{about.public_repos}</p>
-      <p>{about.html_url}</p>
-      <p>{about.avatar_url}</p>
+      <a href={about.html_url}>
+        <GitHubIcon size={24} color="white"></GitHubIcon>
+      </a>
+
       <p>{about.readme}</p>
+      <div className="bg-black text-white p-8">
+        Projects: {about.public_repos}
+      </div>
     </div>
   );
 }
