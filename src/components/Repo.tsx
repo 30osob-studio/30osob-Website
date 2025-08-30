@@ -1,8 +1,7 @@
 import type { RepoItem } from "../types/repos";
 import Contributors from "./Contributors";
 import Languages from "./Languages";
-import { LinkIcon } from "./icons/LinkIcon";
-import { GitHubIcon } from "./icons/GithubIcon";
+import { LinkIcon, GitHubIcon } from "../components/icons";
 
 interface RepoProps {
   repo: RepoItem;
