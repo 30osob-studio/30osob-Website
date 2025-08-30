@@ -1,8 +1,4 @@
-interface IconProps {
-  size?: number;
-  color?: string;
-  className?: string;
-}
+import type { IconProps } from "../../types/icon";
 
 export const LinkIcon: React.FC<IconProps> = ({
   size = 24,

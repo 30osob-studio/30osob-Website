@@ -1,10 +1,4 @@
-import React from "react";
-
-interface IconProps {
-  size?: number;
-  color?: string;
-  className?: string;
-}
+import type { IconProps } from "../../types/icon";
 
 export const GitHubIcon: React.FC<IconProps> = ({
   size = 24,
