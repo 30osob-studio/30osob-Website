@@ -11,7 +11,7 @@ export default function OwnerRepos(): JSX.Element {
   }
 
   return (
-    <div className="border-2 m-4 p-4 break-words">
+    <div className="flex flex-row w-full p-4 bg-[rgba(6,18,28,1)] break-words overflow-x-auto">
       {repos.map((repo: RepoItem) => (
         <Repo key={repo.name} repo={repo} />
       ))}

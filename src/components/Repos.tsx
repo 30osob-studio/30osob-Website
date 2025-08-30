@@ -9,7 +9,7 @@ export default function Repos() {
   }
 
   return (
-    <div className="flex flex-row overflow-auto w-full p-4 bg-[rgba(6,18,28,1)]  break-words">
+    <div className="flex flex-row w-scroll p-4 bg-[rgba(6,18,28,1)] break-words overflow-x-auto">
       {repos.map((repo) => (
         <Repo key={repo.name} repo={repo} />
       ))}
