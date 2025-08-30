@@ -36,8 +36,6 @@ export default function Owner() {
             <GitHubIcon size={24} color="white"></GitHubIcon>
           </a>
         </div>
-
-        <p>Projects: {owner.public_repos}</p>
       </div>
     </div>
   );
