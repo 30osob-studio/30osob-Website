@@ -9,7 +9,7 @@ export default function Repos() {
   }
 
   return (
-    <div className="border-2 m-4 p-4 break-words">
+    <div className="flex flex-row overflow-auto w-full p-4 bg-red-500 break-words">
       {repos.map((repo) => (
         <Repo key={repo.name} repo={repo} />
       ))}
