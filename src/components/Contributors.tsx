@@ -10,14 +10,14 @@ export default function Contributors({ contributors }: ContributorsProps) {
   }
 
   return (
-    <ul className="border-2 m-4 p-4 break-words">
+    <div className="w-7 h-7">
       {contributors.map((c) => (
-        <li key={c.login}>
-          <p>{c.login}</p>
-          <p>{c.avatar_url}</p>
-          <p>{c.html_url}</p>
-        </li>
+        <div key={c.login}>
+          <a href={c.html_url}>
+            <img className="rounded-full" src={c.avatar_url} alt={c.login} />
+          </a>
+        </div>
       ))}
-    </ul>
+    </div>
   );
 }
