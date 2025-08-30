@@ -2,6 +2,7 @@ import type { RepoItem } from "../types/repos";
 import Contributors from "./Contributors";
 import Languages from "./Languages";
 import { LinkIcon, GitHubIcon } from "../components/icons";
+import { formatDistanceToNow } from "date-fns";
 
 interface RepoProps {
   repo: RepoItem;
@@ -9,6 +10,11 @@ interface RepoProps {
 
 export default function Repo({ repo }: RepoProps) {
   const creationDate = new Date(repo.created_at).toLocaleDateString("en-US");
+
+  const updatedDate = formatDistanceToNow(new Date(repo.pushed_at), {
+    addSuffix: true,
+  });
+
   return (
     <div className="m-4 p-4 bg-green-500 break-words w-80 h-100 rounded-xl flex flex-col">
       <p className="bg-yellow-500">{repo.readme}</p>
@@ -22,7 +28,8 @@ export default function Repo({ repo }: RepoProps) {
       <p>{repo.description}</p>
 
       <p>{creationDate}</p>
-      <p>{repo.updated_at}</p>
+
+      <p>Last change:{updatedDate}</p>
 
       <div className="flex flex-col gap-2">
         <Languages languages={repo.languages} />
