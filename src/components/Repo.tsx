@@ -23,7 +23,17 @@ export default function Repo({ repo }: RepoProps) {
       <p>{repo.created_at}</p>
       <p>{repo.updated_at}</p>
       <p>{repo.pushed_at}</p>
-      <p className="bg-blue-500">{repo.topics}</p>
+      <div className="bg-blue-500 flex flex-row gap-4 p-4">
+        {repo.topics.map((topic) => (
+          <div
+            key={topic}
+            className="text-white py-0.5 px-3 rounded-full border-2 border-white"
+          >
+            {topic}
+          </div>
+        ))}
+      </div>
+
       <a
         className="bg-pink-500"
         href={repo.homepage ?? undefined}
