@@ -10,12 +10,15 @@ export default function Languages({ languages }: LanguagesProps) {
   }
 
   return (
-    <ul className="border-2 m-4 p-4 break-words">
-      {Object.entries(languages).map(([name, bytes]) => (
-        <li key={name}>
-          {name}: {bytes}
-        </li>
+    <div className="bg-orange-400 flex flex-row gap-4 p-4">
+      {Object.entries(languages).map(([name]) => (
+        <div
+          key={name}
+          className="flex items-center justify-center rounded-full bg-black text-white py-0.5 px-3 border-2 border-white pb-1"
+        >
+          {name}
+        </div>
       ))}
-    </ul>
+    </div>
   );
 }

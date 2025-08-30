@@ -27,7 +27,7 @@ export default function Repo({ repo }: RepoProps) {
         {repo.topics.map((topic) => (
           <div
             key={topic}
-            className="text-white py-0.5 px-3 rounded-full border-2 border-white"
+            className="flex items-center justify-center rounded-full bg-black text-white py-0.5 px-3 border-2 border-white pb-1"
           >
             {topic}
           </div>
