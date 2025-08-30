@@ -1,6 +1,6 @@
 export interface OwnerData {
     avatar_url: string;
-    html_url: number;
+    html_url: string;
     name: string;
     company: string;
     location: string;

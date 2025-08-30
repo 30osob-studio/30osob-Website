@@ -9,7 +9,7 @@ export default function About() {
   }
 
   return (
-    <footer className="bg-[rgba(0,0,0,1)] text-white p-5 flex flex-row gap-4">
+    <footer className="bg-[rgba(0,0,0,1)] text-white p-5 flex flex-row justify-between">
       <div className="flex flex-row gap-1">
         <MailIcon></MailIcon>
         {about.email}
