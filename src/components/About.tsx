@@ -9,7 +9,7 @@ export default function About() {
   }
 
   return (
-    <div className="bg-[rgba(6,18,28,1)] text-white">
+    <div className="bg-[rgba(6,18,28,1)] text-white flex justify-center p-20">
       <img
         className="rounded-full w-50 h-50"
         src={about.avatar_url}
@@ -28,9 +28,6 @@ export default function About() {
       </a>
 
       <p>{about.readme}</p>
-      <div className="bg-black text-white p-8">
-        Projects: {about.public_repos}
-      </div>
     </div>
   );
 }
