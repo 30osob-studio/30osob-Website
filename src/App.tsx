@@ -4,6 +4,7 @@ import Owner from "./components/Owner";
 import OwnerRepos from "./components/OwnerRepos";
 import Header from "./components/Header";
 import ProjectsBar from "./components/ProjectsBar";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Repos />
       <Owner />
       <OwnerRepos />
+      <Footer></Footer>
     </>
   );
 }
