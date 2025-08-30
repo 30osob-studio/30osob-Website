@@ -14,12 +14,12 @@ export default function About() {
         src={about.avatar_url}
         alt={about.name}
       />
-      <p>{about.description}</p>
-      <p>{about.location}</p>
-
-      <p>{about.twitter_username}</p>
-
-      <p>{about.readme}</p>
+      <div className="flex flex-col justify-center p-10">
+        <p>{about.description}</p>
+        <p>{about.location}</p>
+        <p>{about.twitter_username}</p>
+        <p>{about.readme}</p>
+      </div>
     </div>
   );
 }
