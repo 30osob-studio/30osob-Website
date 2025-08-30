@@ -12,7 +12,7 @@ export interface RepoItem {
     name: string;
     html_url: string;
     description: string | null;
-    created_at: string;
+    created_at: Date;
     updated_at: string;
     pushed_at: string;
     topics: string[];
