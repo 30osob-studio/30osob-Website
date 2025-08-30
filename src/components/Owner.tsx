@@ -9,7 +9,7 @@ export default function Owner() {
   }
 
   return (
-    <div className="bg-[rgba(0,0,0,1)] text-white flex justify-center p-20">
+    <div className="bg-[rgba(0,0,0,1)] text-white flex justify-center p-20 items-center">
       <img
         className="rounded-full w-50 h-50 "
         src={owner.avatar_url}
