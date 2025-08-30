@@ -9,7 +9,7 @@ export default function About() {
   }
 
   return (
-    <div className="">
+    <div className="bg-[rgba(6,18,28,1)] text-white">
       <img
         className="rounded-full w-50 h-50"
         src={about.avatar_url}
