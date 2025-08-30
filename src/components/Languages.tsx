@@ -10,7 +10,7 @@ export default function Languages({ languages }: LanguagesProps) {
   }
 
   return (
-    <div className="bg-orange-400 flex flex-row gap-4 flex-wrap">
+    <div className="border border-orange-400 flex flex-row gap-4 flex-wrap">
       {Object.entries(languages).map(([name]) => (
         <div
           key={name}
