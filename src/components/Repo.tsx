@@ -17,10 +17,12 @@ export default function Repo({ repo }: RepoProps) {
 
   return (
     <div className="m-4 p-4 bg-gray-800 h-100 break-words rounded-xl flex flex-col border border-[rgba(255,255,255,0.34)]">
-      <p className="flex bg-yellow-500 truncate ...">{repo.readme}</p>
-      <div className="flex flex-col gap-4">
-        <div className="flex justify-between w-full items-center">
-          <p className="text-xl text-white">{repo.name}</p>
+      <p className="break-words flex bg-yellow-500 truncate ...">
+        {repo.readme}
+      </p>
+      <div className="break-words flex flex-col gap-4">
+        <div className="flex justify-between w-full items-center flex-col md:flex-row">
+          <p className="break-words text-xl text-white">{repo.name}</p>
           <a href={repo.homepage ?? undefined} target="_blank">
             <LinkIcon size={24} color="white"></LinkIcon>
           </a>
