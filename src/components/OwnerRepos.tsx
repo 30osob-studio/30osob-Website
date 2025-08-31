@@ -1,6 +1,5 @@
 import type { JSX } from "react";
 import { useOwnerRepos } from "../hooks/useOwnerRepos";
-import type { RepoItem } from "../types/repos";
 import Repo from "./Repo";
 import {
   Carousel,
