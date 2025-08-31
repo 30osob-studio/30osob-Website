@@ -10,51 +10,57 @@ interface RepoProps {
 
 export default function Repo({ repo }: RepoProps) {
   const creationDate = new Date(repo.created_at).toLocaleDateString("en-US");
-
   const updatedDate = formatDistanceToNow(new Date(repo.pushed_at), {
     addSuffix: true,
   });
 
   return (
-    <div className="m-4 p-4 bg-gray-800 h-100 break-words rounded-xl flex flex-col border border-[rgba(255,255,255,0.34)]">
-      <p className="break-words flex bg-yellow-500 truncate ...">
-        {repo.readme}
-      </p>
-      <div className="break-words flex flex-col gap-4">
-        <div className="flex justify-between w-full items-center flex-col md:flex-row">
-          <p className="break-words text-xl text-white">{repo.name}</p>
-          <a href={repo.homepage ?? undefined} target="_blank">
-            <LinkIcon size={24} color="white"></LinkIcon>
-          </a>
+    <div className="m-4 p-4 bg-gray-800 rounded-xl border border-[rgba(255,255,255,0.34)] flex flex-col gap-6 items-center max-w-full sm:max-w-md md:max-w-lg">
+      {repo.repo_image && (
+        <img
+          className="rounded w-full max-w-xs h-auto object-cover"
+          src={repo.repo_image}
+          alt={repo.name}
+        />
+      )}
+
+      <div className="w-full flex flex-col gap-4">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
+          <p className="text-xl text-white break-words">{repo.name}</p>
+          {repo.homepage && (
+            <a href={repo.homepage} target="_blank" rel="noopener noreferrer">
+              <LinkIcon size={24} color="white" />
+            </a>
+          )}
         </div>
 
-        <p className="text-gray-400 truncate ... ">{repo.description}</p>
+        {repo.description && (
+          <p className="text-gray-400 break-words">{repo.description}</p>
+        )}
 
-        <p className="text-gray-400">Created at: {creationDate}</p>
-
-        <p className="text-gray-400">Last change: {updatedDate}</p>
+        <p className="text-gray-400 text-sm">Created at: {creationDate}</p>
+        <p className="text-gray-400 text-sm">Last change: {updatedDate}</p>
 
         <Languages languages={repo.languages} />
-        <div className="flex flex-row gap-2.5">
+
+        <div className="flex flex-wrap gap-2">
           {repo.topics.map((topic) => (
-            <div
+            <span
               key={topic}
-              className="flex items-center justify-center rounded-full bg-[rgba(0,136,255,0.34)] text-[rgba(41,154,253,1)] py-0.5 px-3 border-2 border-[rgba(41,154,253,1)] pb-1 text-sm"
+              className="flex items-center justify-center rounded-full bg-[rgba(0,136,255,0.34)] text-[rgba(41,154,253,1)] py-1 px-3 border-2 border-[rgba(41,154,253,1)] text-sm"
             >
               {topic}
-            </div>
+            </span>
           ))}
         </div>
+
+        <div className="flex justify-between items-center mt-4">
+          <a href={repo.html_url} target="_blank" rel="noopener noreferrer">
+            <GitHubIcon size={30} color="white" />
+          </a>
+          <Contributors contributors={repo.contributors} />
+        </div>
       </div>
-      <div className="flex justify-between w-full items-center mt-auto">
-        <a href={repo.html_url ?? undefined} target="_blank">
-          <GitHubIcon size={30} color="white"></GitHubIcon>
-        </a>
-        <Contributors contributors={repo.contributors} />
-      </div>
-      {/* <p>{repo.open_issues_count}</p> */}
-      {/* <p>{repo.default_branch}</p> */}
-      {/* <p>{repo.pushed_at}</p> */}
     </div>
   );
 }

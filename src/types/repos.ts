@@ -23,6 +23,7 @@ export interface RepoItem {
     contributors: RepoContributor[];
     languages: RepoLanguages;
     readme: string | null;
+    repo_image: string | null;
 }
 
 export type ReposData = RepoItem[];
