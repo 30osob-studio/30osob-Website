@@ -1,5 +1,12 @@
 import { useRepos } from "../hooks/useRepos";
 import Repo from "./Repo";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export default function Repos() {
   const { repos, fallbackText } = useRepos();
@@ -9,10 +16,18 @@ export default function Repos() {
   }
 
   return (
-    <div className="flex flex-row w-scroll p-4 bg-[rgba(6,18,28,1)] break-words overflow-x-auto">
-      {repos.map((repo) => (
-        <Repo key={repo.name} repo={repo} />
-      ))}
+    <div className="max-w-full px-20 bg-[rgba(6,18,28,1)]">
+      <Carousel>
+        <CarouselContent>
+          {repos.map((repo) => (
+            <CarouselItem className="basis-full md:basis-1/3">
+              <Repo key={repo.name} repo={repo} />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious className="bg-black text-white" />
+        <CarouselNext className="bg-black text-white" />
+      </Carousel>
     </div>
   );
 }

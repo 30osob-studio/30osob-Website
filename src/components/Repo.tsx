@@ -16,8 +16,8 @@ export default function Repo({ repo }: RepoProps) {
   });
 
   return (
-    <div className="m-4 p-4 bg-gray-800 break-words w-80 h-96 rounded-xl flex flex-col border border-[rgba(255,255,255,0.34)] flex-none">
-      <p className="bg-yellow-500 truncate ...">{repo.readme}</p>
+    <div className="m-4 p-4 bg-gray-800 h-100 break-words rounded-xl flex flex-col border border-[rgba(255,255,255,0.34)]">
+      <p className="flex bg-yellow-500 truncate ...">{repo.readme}</p>
       <div className="flex flex-col gap-4">
         <div className="flex justify-between w-full items-center">
           <p className="text-xl text-white">{repo.name}</p>
@@ -37,7 +37,7 @@ export default function Repo({ repo }: RepoProps) {
           {repo.topics.map((topic) => (
             <div
               key={topic}
-              className="flex items-center justify-center rounded-full bg-[rgba(0,136,255,0.34)] text-[rgba(41,154,253,1)] py-0.5 px-3 border-2 border-[rgba(41, 154, 253, 1)] pb-1 text-sm"
+              className="flex items-center justify-center rounded-full bg-[rgba(0,136,255,0.34)] text-[rgba(41,154,253,1)] py-0.5 px-3 border-2 border-[rgba(41,154,253,1)] pb-1 text-sm"
             >
               {topic}
             </div>

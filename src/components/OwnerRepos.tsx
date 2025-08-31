@@ -2,6 +2,13 @@ import type { JSX } from "react";
 import { useOwnerRepos } from "../hooks/useOwnerRepos";
 import type { RepoItem } from "../types/repos";
 import Repo from "./Repo";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export default function OwnerRepos(): JSX.Element {
   const { repos, fallbackText } = useOwnerRepos();
@@ -11,10 +18,18 @@ export default function OwnerRepos(): JSX.Element {
   }
 
   return (
-    <div className="flex flex-row w-full p-4 bg-[rgba(6,18,28,1)] break-words overflow-x-auto">
-      {repos.map((repo: RepoItem) => (
-        <Repo key={repo.name} repo={repo} />
-      ))}
+    <div className="max-w-full px-20 bg-[rgba(6,18,28,1)]">
+      <Carousel>
+        <CarouselContent>
+          {repos.map((repo) => (
+            <CarouselItem className="basis-full md:basis-1/3">
+              <Repo key={repo.name} repo={repo} />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious className="bg-black text-white" />
+        <CarouselNext className="bg-black text-white" />
+      </Carousel>
     </div>
   );
 }
