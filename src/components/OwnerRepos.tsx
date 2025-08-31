@@ -1,6 +1,7 @@
 import type { JSX } from "react";
 import { useOwnerRepos } from "../hooks/useOwnerRepos";
 import Repo from "./Repo";
+import { useState, useEffect } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -11,18 +12,37 @@ import {
 
 export default function OwnerRepos(): JSX.Element {
   const { repos, fallbackText } = useOwnerRepos();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   if (!repos) {
     return <>{fallbackText && <div>{fallbackText}</div>}</>;
   }
 
+  if (!isClient) {
+    return (
+      <div className="max-w-full px-20 bg-[rgba(6,18,28,1)]">
+        <div className="flex gap-4 overflow-x-auto">
+          {repos.map((repo) => (
+            <div key={repo.name} className="flex-shrink-0 w-full md:w-1/3">
+              <Repo repo={repo} />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="max-w-full px-20 bg-[rgba(6,18,28,1)]">
+    <div className="max-w-full px-20 bg-[rgba(6,18,28,1)] relative">
       <Carousel>
         <CarouselContent>
           {repos.map((repo) => (
-            <CarouselItem className="basis-full md:basis-1/3">
-              <Repo key={repo.name} repo={repo} />
+            <CarouselItem key={repo.name} className="basis-full md:basis-1/3">
+              <Repo repo={repo} />
             </CarouselItem>
           ))}
         </CarouselContent>
