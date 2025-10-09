@@ -1,4 +1,4 @@
-![alt](https://raw.githubusercontent.com/30osob-studio/Website/dcc25d4caed794f9bd0b7505d05a815c05efd0bc/NoImage.png)
+![alt](https://i.pinimg.com/1200x/cd/e7/41/cde741036d64b0221bbd3bc0d52f550a.jpg)
 
 # Nazwa projektu
 
