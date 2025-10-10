@@ -1,19 +1,45 @@
-import { useAbout } from "../hooks/useAbout";
+import { Link } from "react-router";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
 
-export default function About() {
-  const { about, fallbackText } = useAbout();
-
-  if (!about) {
-    return <>{fallbackText && <div>{fallbackText}</div>}</>;
-  }
-
+function Header() {
   return (
-    <div className="bg-[rgba(0,0,0,1)] text-white">
-      <img
-        className="rounded-full w-15 h-15"
-        src={about.avatar_url}
-        alt={about.name}
-      />
-    </div>
+    <header className="w-full border border-black py-4">
+      <NavigationMenu>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <NavigationMenuLink
+              asChild
+              className={navigationMenuTriggerStyle()}
+            >
+              <Link to="/">Projects</Link>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuLink
+              asChild
+              className={navigationMenuTriggerStyle()}
+            >
+              <Link to="/old">Portfolio</Link>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuLink
+              asChild
+              className={navigationMenuTriggerStyle()}
+            >
+              <Link to="/about">About</Link>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
+    </header>
   );
 }
+
+export default Header;
