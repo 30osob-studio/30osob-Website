@@ -1,6 +1,6 @@
 import type { JSX } from "react";
 import { useOwnerRepos } from "../hooks/useOwnerRepos";
-import Repo from "./Repo";
+import Project from "./Project";
 import { useState, useEffect } from "react";
 import {
   Carousel,
@@ -28,7 +28,7 @@ export default function OwnerRepos(): JSX.Element {
         <div className="flex gap-4 overflow-x-auto">
           {repos.map((repo) => (
             <div key={repo.name} className="flex-shrink-0 w-full md:w-1/3">
-              <Repo repo={repo} />
+              <Project repo={repo} />
             </div>
           ))}
         </div>
@@ -42,7 +42,7 @@ export default function OwnerRepos(): JSX.Element {
         <CarouselContent>
           {repos.map((repo) => (
             <CarouselItem key={repo.name} className="basis-full md:basis-1/3">
-              <Repo repo={repo} />
+              <Project repo={repo} />
             </CarouselItem>
           ))}
         </CarouselContent>
