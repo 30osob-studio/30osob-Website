@@ -1,6 +1,21 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@layer components {
+  .card,
+  .card-header,
+  .card-title,
+  .card-description,
+  .card-action,
+  .card-content {
+    @apply gap-4;
+  }
+
+  .card-footer {
+    @apply flex;
+  }
+}
+
 @layer utilities {
   .shadow-xs {
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
