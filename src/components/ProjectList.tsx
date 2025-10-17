@@ -1,6 +1,5 @@
-import type { JSX } from "react";
-import { useOwnerRepos } from "../hooks/useOwnerRepos";
-import Repo from "./Repo";
+import type { ReposData } from "../types/repos";
+import Project from "./Project";
 import { useState, useEffect } from "react";
 import {
   Carousel,
@@ -10,15 +9,19 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-export default function OwnerRepos(): JSX.Element {
-  const { repos, fallbackText } = useOwnerRepos();
+interface ProjectListProps {
+  projects: ReposData | null;
+  fallbackText: string;
+}
+
+export default function ProjectList({ projects, fallbackText }: ProjectListProps) {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  if (!repos) {
+  if (!projects) {
     return <>{fallbackText && <div>{fallbackText}</div>}</>;
   }
 
@@ -26,9 +29,9 @@ export default function OwnerRepos(): JSX.Element {
     return (
       <div className="max-w-full px-20 bg-[rgba(6,18,28,1)]">
         <div className="flex gap-4 overflow-x-auto">
-          {repos.map((repo) => (
-            <div key={repo.name} className="flex-shrink-0 w-full md:w-1/3">
-              <Repo repo={repo} />
+          {projects.map((project) => (
+            <div key={project.name} className="flex-shrink-0 w-full md:w-1/3">
+              <Project project={project} />
             </div>
           ))}
         </div>
@@ -40,9 +43,9 @@ export default function OwnerRepos(): JSX.Element {
     <div className="max-w-full px-20 bg-[rgba(6,18,28,1)] relative">
       <Carousel>
         <CarouselContent>
-          {repos.map((repo) => (
-            <CarouselItem key={repo.name} className="basis-full md:basis-1/3">
-              <Repo repo={repo} />
+          {projects.map((project) => (
+            <CarouselItem key={project.name} className="basis-full md:basis-1/3">
+              <Project project={project} />
             </CarouselItem>
           ))}
         </CarouselContent>
