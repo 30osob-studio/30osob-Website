@@ -1,11 +1,22 @@
 import About from "./components/About";
-import Repos from "./components/Repos";
+import ProjectsList from "./components/ProjectsList";
 import Owner from "./components/Owner";
-import OwnerRepos from "./components/OwnerRepos";
 import Header from "./components/Header";
 import ProjectsBar from "./components/ProjectsBar";
 import Footer from "./components/Footer";
 import OwnerProjectsBar from "./components/OwnerProjectsBar";
+import { useRepos } from "./hooks/useRepos";
+import { useOwnerRepos } from "./hooks/useOwnerRepos";
+
+function ProjectsListWrapper() {
+  const { repos, fallbackText } = useRepos();
+  return <ProjectsList repos={repos} fallbackText={fallbackText} />;
+}
+
+function OwnerProjectsListWrapper() {
+  const { repos, fallbackText } = useOwnerRepos();
+  return <ProjectsList repos={repos} fallbackText={fallbackText} />;
+}
 
 function App() {
   return (
@@ -13,10 +24,10 @@ function App() {
       <Header />
       <About />
       <ProjectsBar></ProjectsBar>
-      <Repos />
+      <ProjectsListWrapper />
       <Owner />
       <OwnerProjectsBar></OwnerProjectsBar>
-      <OwnerRepos />
+      <OwnerProjectsListWrapper />
       <Footer></Footer>
     </>
   );
