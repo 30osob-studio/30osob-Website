@@ -2,7 +2,7 @@ import type { RepoItem } from "../types/repos";
 import Contributors from "./Contributors";
 import Languages from "./Languages";
 import { LinkIcon, GitHubIcon } from "../components/icons";
-import { formatDistanceToNow } from "date-fns";
+import { formatDistanceToNow, format } from "date-fns";
 import {
   Card,
   CardAction,
@@ -19,7 +19,7 @@ interface ProjectProps {
 }
 
 export default function Project({ project }: ProjectProps) {
-  const creationDate = new Date(project.created_at).toLocaleDateString("en-US");
+  const creationDate = format(new Date(project.created_at), "MM.dd.yyyy");
   const updatedDate = formatDistanceToNow(new Date(project.pushed_at), {
     addSuffix: true,
   });
