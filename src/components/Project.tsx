@@ -38,7 +38,7 @@ export default function Project({ project }: ProjectProps) {
 
       <div className="w-full flex flex-col">
         <CardHeader className="gap-0 h-full flex">
-          <CardTitle className="text-xl text-white truncatemr-2">
+          <CardTitle className="text-xl text-white truncate mr-2">
             {project.name}
           </CardTitle>
           {project.homepage && (
