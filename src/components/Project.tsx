@@ -25,7 +25,7 @@ export default function Project({ project }: ProjectProps) {
   });
 
   return (
-    <Card className="flex items-center bg-gray-800 border-[rgba(255,255,255,0.34)] overflow-hidden">
+    <Card className="flex items-center bg-gray-800 border-[rgba(255,255,255,0.34)] overflow-hidden pt-0 h-full">
       {project.repo_image && (
         <AspectRatio ratio={1} className="w-full h-full flex-shrink-0">
           <img
@@ -36,13 +36,13 @@ export default function Project({ project }: ProjectProps) {
         </AspectRatio>
       )}
 
-      <div className="w-full flex flex-col pb-6 px-6">
-        <CardHeader>
-          <CardTitle className="text-xl text-white break-words">
+      <div className="w-full flex flex-col">
+        <CardHeader className="gap-0 h-full flex">
+          <CardTitle className="text-xl text-white truncatemr-2">
             {project.name}
           </CardTitle>
           {project.homepage && (
-            <CardAction>
+            <CardAction className="h-full flex items-center justify-center">
               <a
                 href={project.homepage}
                 target="_blank"
@@ -54,7 +54,7 @@ export default function Project({ project }: ProjectProps) {
           )}
         </CardHeader>
 
-        <CardContent className="flex flex-col">
+        <CardContent className="flex flex-col gap-4">
           {project.description && (
             <CardDescription className="text-gray-400 break-words">
               {project.description}
