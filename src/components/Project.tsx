@@ -11,8 +11,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { AspectRatio } from "@/components/ui/aspect-ratio"
+} from "@/components/ui/card";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 interface ProjectProps {
   project: RepoItem;
@@ -25,7 +25,7 @@ export default function Project({ project }: ProjectProps) {
   });
 
   return (
-    <Card className="m-4 flex items-center w-96 bg-gray-800 border-[rgba(255,255,255,0.34)] overflow-hidden">
+    <Card className="flex items-center bg-gray-800 border-[rgba(255,255,255,0.34)] overflow-hidden">
       {project.repo_image && (
         <AspectRatio ratio={1} className="w-full h-full flex-shrink-0">
           <img
@@ -35,13 +35,19 @@ export default function Project({ project }: ProjectProps) {
           />
         </AspectRatio>
       )}
-    
-      <div className="w-full flex flex-col">
+
+      <div className="w-full flex flex-col pb-6 px-6">
         <CardHeader>
-          <CardTitle className="text-xl text-white break-words">{project.name}</CardTitle>
+          <CardTitle className="text-xl text-white break-words">
+            {project.name}
+          </CardTitle>
           {project.homepage && (
             <CardAction>
-              <a href={project.homepage} target="_blank" rel="noopener noreferrer">
+              <a
+                href={project.homepage}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <LinkIcon size={24} color="white" />
               </a>
             </CardAction>
@@ -50,7 +56,9 @@ export default function Project({ project }: ProjectProps) {
 
         <CardContent className="flex flex-col">
           {project.description && (
-            <CardDescription className="text-gray-400 break-words">{project.description}</CardDescription>
+            <CardDescription className="text-gray-400 break-words">
+              {project.description}
+            </CardDescription>
           )}
 
           <p className="text-gray-400 text-sm">Created at: {creationDate}</p>

@@ -14,7 +14,10 @@ interface ProjectListProps {
   fallbackText: string;
 }
 
-export default function ProjectList({ projects, fallbackText }: ProjectListProps) {
+export default function ProjectList({
+  projects,
+  fallbackText,
+}: ProjectListProps) {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -40,17 +43,25 @@ export default function ProjectList({ projects, fallbackText }: ProjectListProps
   }
 
   return (
-    <div className="max-w-full px-20 bg-[rgba(6,18,28,1)] relative">
-      <Carousel>
-        <CarouselContent>
+    <div className="border border-red-500 flex justify-center">
+      <Carousel
+        opts={{
+          align: "start",
+        }}
+        className="w-full max-w-[calc(100%-128px)] mx-16 my-4 border border-blue-500"
+      >
+        <CarouselContent className="">
           {projects.map((project) => (
-            <CarouselItem key={project.name} className="basis-full md:basis-1/3">
+            <CarouselItem
+              key={project.name}
+              className="md:basis-1/2 lg:basis-1/3"
+            >
               <Project project={project} />
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="bg-black text-white" />
-        <CarouselNext className="bg-black text-white" />
+        <CarouselPrevious />
+        <CarouselNext />
       </Carousel>
     </div>
   );
