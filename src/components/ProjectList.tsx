@@ -43,12 +43,12 @@ export default function ProjectList({
   }
 
   return (
-    <div className="border border-red-500 flex justify-center">
+    <div className="border border-red-500 flex justify-center w-full">
       <Carousel
         opts={{
           align: "start",
         }}
-        className="w-full max-w-[calc(100%-128px)] mx-16 my-4 border border-blue-500"
+        className="w-full max-w-[calc(100%-128px)] my-4 border border-blue-500 xl:max-w-[calc(100%-256px)]"
       >
         <CarouselContent className="-ml-4">
           {projects.map((project) => (
