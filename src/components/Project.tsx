@@ -25,7 +25,7 @@ export default function Project({ project }: ProjectProps) {
   });
 
   return (
-    <Card className="flex items-center bg-gray-800 border-[rgba(255,255,255,0.34)] overflow-hidden pt-0 h-full">
+    <Card className="flex items-center bg-gray-800 border-[rgba(255,255,255,0.34)] overflow-hidden pt-0 h-full gap-3">
       {project.repo_image && (
         <AspectRatio ratio={1} className="w-full h-full flex-shrink-0">
           <img
@@ -36,8 +36,8 @@ export default function Project({ project }: ProjectProps) {
         </AspectRatio>
       )}
 
-      <div className="w-full flex flex-col">
-        <CardHeader className="gap-0 h-full flex">
+      <div className="w-full flex flex-col h-full">
+        <CardHeader className="gap-0 flex">
           <CardTitle className="text-xl text-white truncate mr-2">
             {project.name}
           </CardTitle>
@@ -54,9 +54,9 @@ export default function Project({ project }: ProjectProps) {
           )}
         </CardHeader>
 
-        <CardContent className="flex flex-col gap-4">
+        <CardContent className="flex flex-col gap-4 flex-1 mb-4">
           {project.description && (
-            <CardDescription className="text-gray-400 break-words">
+            <CardDescription className="text-gray-400 break-words line-clamp-2">
               {project.description}
             </CardDescription>
           )}
@@ -78,7 +78,7 @@ export default function Project({ project }: ProjectProps) {
           </div>
         </CardContent>
 
-        <CardFooter className="flex justify-between items-center">
+        <CardFooter className="flex justify-between items-center mt-auto">
           <a href={project.html_url} target="_blank" rel="noopener noreferrer">
             <GitHubIcon size={30} color="white" />
           </a>
