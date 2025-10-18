@@ -38,7 +38,7 @@ export default function Project({ project }: ProjectProps) {
 
       <div className="w-full flex flex-col h-full">
         <CardHeader className="gap-0 flex">
-          <CardTitle className="text-xl text-white truncate mr-2">
+          <CardTitle className="text-xl text-white line-clamp-1 mr-2">
             {project.name}
           </CardTitle>
           {project.homepage && (
@@ -56,13 +56,21 @@ export default function Project({ project }: ProjectProps) {
 
         <CardContent className="flex flex-col gap-4 flex-1 mb-4">
           {project.description && (
-            <CardDescription className="text-gray-400 break-words line-clamp-2">
+            <CardDescription className="text-gray-400 break-words line-clamp-3">
               {project.description}
             </CardDescription>
           )}
 
-          <p className="text-gray-400 text-sm">Created at: {creationDate}</p>
-          <p className="text-gray-400 text-sm">Last change: {updatedDate}</p>
+          <div className="flex justify-between items-center">
+            <span className="text-white">
+              Created at:
+              <p className="text-gray-400 text-sm">{creationDate}</p>
+            </span>
+            <span className="text-white">
+              Last change:
+              <p className="text-gray-400 text-sm">{updatedDate}</p>
+            </span>
+          </div>
 
           <Languages languages={project.languages} />
 

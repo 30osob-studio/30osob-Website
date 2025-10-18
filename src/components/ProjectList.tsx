@@ -50,11 +50,11 @@ export default function ProjectList({
         }}
         className="w-full max-w-[calc(100%-128px)] mx-16 my-4 border border-blue-500"
       >
-        <CarouselContent className="">
+        <CarouselContent className="-ml-4">
           {projects.map((project) => (
             <CarouselItem
               key={project.name}
-              className="md:basis-1/2 lg:basis-1/3"
+              className="sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 pl-4"
             >
               <Project project={project} />
             </CarouselItem>
