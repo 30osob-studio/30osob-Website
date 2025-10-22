@@ -1,6 +1,6 @@
 import type { RepoItem } from "../types/repos";
 import Contributors from "./Contributors";
-import Languages from "./Languages";
+import TagList from "./TagList";
 import { LinkIcon, GitHubIcon } from "../components/icons";
 import { formatDistanceToNow, format } from "date-fns";
 import {
@@ -73,17 +73,8 @@ export default function Project({ project }: ProjectProps) {
           </div>
           <div className="border-t-2 border-gray-400 border-dotted -mx-12"></div>
           
-          <Languages languages={project.languages} />
-          <div className="flex flex-wrap gap-2">
-            {project.topics.map((topic) => (
-              <span
-                key={topic}
-                className="flex items-center lato-bold justify-center rounded-full bg-white text-black py-1 px-3 border-2 border-blck text-sm"
-              >
-                {topic}
-              </span>
-            ))}
-          </div>
+          <TagList items={project.languages} tagClassName="bg-black text-white" />
+          <TagList items={project.topics} tagClassName="bg-white text-black" />
         </CardContent>
         <div className="border-t-2 border-black"></div>
         <CardFooter className="flex justify-between items-center mt-3">
