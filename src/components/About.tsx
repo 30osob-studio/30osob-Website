@@ -16,7 +16,6 @@ export default function About() {
       />
       <div className="flex flex-col justify-center p-6 md:p-10">
         <p>{about.description}</p>
-        <p>{about.location}</p>
         <p>{about.twitter_username}</p>
         <p>{about.readme}</p>
       </div>
