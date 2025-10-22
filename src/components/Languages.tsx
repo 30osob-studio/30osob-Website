@@ -14,7 +14,7 @@ export default function Languages({ languages }: LanguagesProps) {
       {Object.entries(languages).map(([name]) => (
         <div
           key={name}
-          className="flex items-center justify-center rounded-full bg-[rgba(255,140,0,0.34)] text-[rgba(255,140,0,1)] py-0.5 px-3 border-2 border-[rgba(255,140,0,1)] pb-1 text-sm"
+          className="flex items-center lato-bold justify-center rounded-full bg-black text-white py-1 px-3 border-2 border-blck text-sm"
         >
           {name}
         </div>
