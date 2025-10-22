@@ -1,7 +1,7 @@
 import type { RepoItem } from "../types/repos";
 import Contributors from "./Contributors";
 import TagList from "./TagList";
-import { LinkIcon, GitHubIcon } from "../components/icons";
+import { GitHubIcon } from "../components/icons";
 import { formatDistanceToNow, format } from "date-fns";
 import {
   Card,
@@ -38,19 +38,17 @@ export default function Project({ project }: ProjectProps) {
 
       <div className="w-full flex flex-col h-full">
         <CardHeader className="gap-0 flex">
-
-          {project.homepage && (
-            <CardAction className="h-full flex items-center justify-center">
-              <a
-                href={project.homepage}
-                target="_blank"
-                rel="noopener noreferrer"
-              >          <CardTitle className="text-[clamp(2rem,2vw,2rem)] font-bold text-black break-words w-full">
-            {project.name.replace(/-/g, ' ')}
-          </CardTitle>
-              </a>
-            </CardAction>
-          )}
+          <CardAction className="h-full flex items-center justify-center">
+            <a
+              href={project.homepage || ""}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <CardTitle className="text-[clamp(2rem,2vw,2rem)] font-bold text-black break-words w-full">
+                {project.name.replace(/-/g, ' ')}
+              </CardTitle>
+            </a>
+          </CardAction>
         </CardHeader>
 
         <CardContent className="flex flex-col gap-4 pb-4 flex-1">
@@ -78,7 +76,7 @@ export default function Project({ project }: ProjectProps) {
         <div className="border-t-3 border-black"></div>
         <CardFooter className="flex justify-between items-center mt-3">
           <a href={project.html_url} target="_blank" rel="noopener noreferrer">
-            <GitHubIcon size={37.6} color="black" />
+            <GitHubIcon size={37.6} color="black"/>
             
           </a>
           {project.contributors && project.contributors.length > 0 && (
