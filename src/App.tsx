@@ -16,7 +16,7 @@ function App() {
   const { owner, fallbackText: ownerFallbackText } = useOwner();
 
   return (
-    <>
+    <div className="montserrat-regular">
       <Header />
       <About />
       <ProjectsCounter
@@ -33,7 +33,7 @@ function App() {
       />
       <ProjectList projects={ownerRepos} fallbackText={ownerReposFallbackText} />
       <Footer></Footer>
-    </>
+    </div>
   );
 }
 

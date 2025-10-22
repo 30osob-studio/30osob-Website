@@ -116,7 +116,7 @@ export default function TagList({ items, tagClassName = "bg-white text-black" }:
         {visibleTags.map((tag) => (
           <div
             key={tag}
-            className={`flex items-center lato-bold justify-center rounded-full ${tagClassName} py-1 px-3 border-2 border-blck text-sm flex-shrink-0`}
+            className={`flex items-center lato-bold justify-center rounded-full ${tagClassName} py-0.5 px-2 border-3 border-black text-sm flex-shrink-0`}
           >
             {tag}
           </div>
@@ -127,7 +127,7 @@ export default function TagList({ items, tagClassName = "bg-white text-black" }:
             <div
               ref={plusButtonRef}
               onClick={() => setIsOpen(!isOpen)}
-              className={`flex items-center lato-bold justify-center rounded-full ${tagClassName} py-1 px-3 border-2 border-blck text-sm flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity active:scale-95`}
+              className={`flex items-center lato-bold justify-center rounded-full ${tagClassName} py-0.5 px-2 border-3 border-black text-sm flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity active:scale-95`}
             >
               +{hiddenTags.length}
             </div>
