@@ -43,25 +43,25 @@ export default function ProjectList({
   }
 
   return (
-    <div className="border border-red-500 flex justify-center w-full">
+    <div className="bg-red-500 border border-red-500 flex justify-center w-full px-4">
       <Carousel
         opts={{
           align: "start",
         }}
-        className="w-full max-w-[calc(100%-128px)] my-4 border border-blue-500 xl:max-w-[calc(100%-256px)]"
+        className="w-full my-4 border border-blue-500"
       >
-        <CarouselContent className="-ml-4">
+        <CarouselContent>
           {projects.map((project) => (
             <CarouselItem
               key={project.name}
-              className="sm:basis-1/2 md:basis-1/3 lg:basis-1/3 xl:basis-1/3 pl-4"
+              className="sm:basis-1/2 md:basis-1/3 lg:basis-1/3 xl:basis-1/3"
             >
               <Project project={project} />
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        <CarouselPrevious className="-left-3 bg-white border-none" />
+        <CarouselNext className="-right-3 bg-white border-none" />
       </Carousel>
     </div>
   );
