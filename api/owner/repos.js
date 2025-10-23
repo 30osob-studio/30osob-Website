@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
     try {
-        const response = await fetch('https://api-ix11.onrender.com/owner/repos');
+        const response = await fetch('https://api.30osob.com/owner/repos');
         const data = await response.json();
 
         res.setHeader('Access-Control-Allow-Origin', '*');

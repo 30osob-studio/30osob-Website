@@ -9,7 +9,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://api-ix11.onrender.com',
+        target: 'https://api.30osob.com',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       }
