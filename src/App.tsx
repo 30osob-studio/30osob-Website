@@ -1,7 +1,7 @@
 import About from "./components/About";
 import ProjectList from "./components/ProjectList";
 import Owner from "./components/Owner";
-import Header from "./components/Header";
+// import Header from "./components/Header";
 import ProjectsCounter from "./components/ProjectsCounter";
 import Footer from "./components/Footer";
 import { useRepos } from "./hooks/useRepos";
@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className="montserrat-regular">
-      <Header />
+      {/* <Header /> */}
       <About />
       <ProjectsCounter
         count={about?.public_repos}
