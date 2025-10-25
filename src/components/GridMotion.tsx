@@ -44,18 +44,13 @@ const GridMotion: FC<GridMotionProps> = ({ items = [], speed = 0.1 }) => {
 
         gsap.killTweensOf(row);
 
-        const animateRow = () => {
-          gsap.to(row, {
-            x: oneSetWidth * direction * -3,
-            duration: (sourceItems.length * 3) / speed,
-            ease: "none",
-            onComplete: () => {
-              gsap.set(row, { x: oneSetWidth * direction * -1 });
-              animateRow();
-            },
-          });
-        };
-        animateRow();
+        gsap.to(row, {
+          x: oneSetWidth * direction * -1,
+          duration: sourceItems.length / speed,
+          ease: "none",
+          repeat: -1,
+          repeatRefresh: true,
+        });
       });
     };
 
