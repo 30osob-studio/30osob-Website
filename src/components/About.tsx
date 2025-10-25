@@ -25,7 +25,7 @@ export default function About() {
 
     // note: you'll need to make sure the parent container of this component is sized properly
     <div className="h-150 w-full relative">
-      <div className="top-0 bg-white h-full">
+      <div className="top-0 bg-white h-full z-0">
         {!isLoading && repoImages.length > 0 ? (
           <GridMotion items={repoImages} />
         ) : (
@@ -34,7 +34,7 @@ export default function About() {
           </div>
         )}
       </div>
-      <div className="absolute inset-0 bg-white opacity-85 pointer-events-none z-[10] flex flex-col md:flex-row justify-center items-center md:items-start gap-6 p-6 md:p-20">
+      <div className="absolute inset-0 bg-white opacity-85 z-[10] flex flex-col md:flex-row justify-center items-center md:items-start gap-6 p-6 md:p-20 pointer-events-auto">
         <img
           className="rounded-full w-50 h-50 flex-shrink-0"
           src={about.avatar_url}
