@@ -1,6 +1,7 @@
 import { useAbout } from "../hooks/useAbout";
 import { useAllRepos } from "../hooks/useAllRepos";
 import GridMotion from "./GridMotion";
+import Logo from "./Logo";
 
 export default function About() {
   const { about, fallbackText } = useAbout();
@@ -23,7 +24,6 @@ export default function About() {
     //   </div>
     // </div>
 
-    // note: you'll need to make sure the parent container of this component is sized properly
     <div className="h-150 w-full relative">
       <div className="top-0 bg-white h-full z-0">
         {!isLoading && repoImages.length > 0 ? (
@@ -34,12 +34,10 @@ export default function About() {
           </div>
         )}
       </div>
-      <div className="absolute inset-0 bg-white opacity-85 z-[10] flex flex-col md:flex-row justify-center items-center md:items-start gap-6 p-6 md:p-20 pointer-events-auto">
-        <img
-          className="rounded-full w-50 h-50 flex-shrink-0"
-          src={about.avatar_url}
-          alt={about.name}
-        />
+      <div className="absolute inset-0 bg-white/85 z-[10] flex flex-col md:flex-row justify-center items-center md:items-start gap-6 p-6 md:p-20 pointer-events-auto">
+        <div className="absolute top-0 left-0 z-[20]">
+          <Logo />
+        </div>
         <div className="flex flex-col justify-center p-6 md:p-10">
           <p>{about.description}</p>
           <p>{about.twitter_username}</p>
