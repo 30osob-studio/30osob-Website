@@ -22,9 +22,13 @@ const GridMotion: FC<GridMotionProps> = ({
   );
   const sourceItems = items.length > 0 ? items : defaultItems;
 
-  // Duplikuj itemy tylko 2 razy - wystarczy do gładkiego zapętlania
   const expandedItems = useMemo(() => {
-    const expanded = [...sourceItems, ...sourceItems];
+    const expanded = [
+      ...sourceItems,
+      ...sourceItems,
+      ...sourceItems,
+      ...sourceItems,
+    ];
     return expanded;
   }, [sourceItems]);
 
@@ -35,28 +39,23 @@ const GridMotion: FC<GridMotionProps> = ({
       rowRefs.current.forEach((row, rowIndex) => {
         if (!row) return;
 
-        // Oblicz szerokość elementu na podstawie pierwszego dziecka
         const firstItem = row.firstElementChild as HTMLElement;
         if (!firstItem) return;
 
-        const itemWidth = firstItem.offsetWidth + 16; // width + gap (1rem)
+        const itemWidth = firstItem.offsetWidth + 16;
         const oneSetWidth = sourceItems.length * itemWidth;
-        const direction = rowIndex % 2 === 0 ? -1 : 1; // alternate directions
+        const direction = rowIndex % 2 === 0 ? -1 : 1;
 
-        // Zabij istniejącą animację
         gsap.killTweensOf(row);
 
-        // Animacja nieskończonego scrollu bez przerwy
-        // Elementy są duplikowane 2x, więc animujemy przez jeden komplet
-        // i resetujemy dla gładkiego zapętlania
         const animateRow = () => {
           gsap.to(row, {
-            x: oneSetWidth * direction * -1,
-            duration: (sourceItems.length * 2) / speed,
+            x: oneSetWidth * direction * -3,
+            duration: (sourceItems.length * 3) / speed,
             ease: "none",
             onComplete: () => {
-              gsap.set(row, { x: 0 });
-              animateRow(); // Powtórz animację
+              gsap.set(row, { x: oneSetWidth * direction * -1 });
+              animateRow();
             },
           });
         };
@@ -64,7 +63,6 @@ const GridMotion: FC<GridMotionProps> = ({
       });
     };
 
-    // Poczekaj na wyrenderowanie elementów
     setTimeout(handleResize, 0);
 
     window.addEventListener("resize", handleResize);
