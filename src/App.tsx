@@ -11,13 +11,14 @@ import { useOwner } from "./hooks/useOwner";
 
 function App() {
   const { repos, fallbackText: reposFallbackText } = useRepos();
-  const { repos: ownerRepos, fallbackText: ownerReposFallbackText } = useOwnerRepos();
+  const { repos: ownerRepos, fallbackText: ownerReposFallbackText } =
+    useOwnerRepos();
   const { about, fallbackText: aboutFallbackText } = useAbout();
   const { owner, fallbackText: ownerFallbackText } = useOwner();
 
   return (
     <div className="montserrat-regular">
-      <Header />
+      {/* <Header /> */}
       <About />
       <ProjectsCounter
         count={about?.public_repos}
@@ -31,7 +32,10 @@ function App() {
         fallbackText={ownerFallbackText}
         className="bg-black text-white p-8 border-t border-gray-400"
       />
-      <ProjectList projects={ownerRepos} fallbackText={ownerReposFallbackText} />
+      <ProjectList
+        projects={ownerRepos}
+        fallbackText={ownerReposFallbackText}
+      />
       <Footer></Footer>
     </div>
   );
