@@ -1,4 +1,5 @@
-import { useEffect, useRef, FC, useMemo } from "react";
+import { useEffect, useRef, useMemo, type FC } from "react";
+import type { JSX } from "react";
 import { gsap } from "gsap";
 
 interface GridMotionProps {
