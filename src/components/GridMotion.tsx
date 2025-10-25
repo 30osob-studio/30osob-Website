@@ -22,13 +22,9 @@ const GridMotion: FC<GridMotionProps> = ({
   );
   const sourceItems = items.length > 0 ? items : defaultItems;
 
-  // Duplikuj itemy aby wypełnić rzędy i stworzyć loop
+  // Duplikuj itemy tylko 2 razy - wystarczy do gładkiego zapętlania
   const expandedItems = useMemo(() => {
-    const repetitions = 10; // Dużo duplikatów aby zapętlanie było gładkie
-    const expanded = [];
-    for (let i = 0; i < repetitions; i++) {
-      expanded.push(...sourceItems);
-    }
+    const expanded = [...sourceItems, ...sourceItems];
     return expanded;
   }, [sourceItems]);
 
@@ -51,13 +47,20 @@ const GridMotion: FC<GridMotionProps> = ({
         gsap.killTweensOf(row);
 
         // Animacja nieskończonego scrollu bez przerwy
-        gsap.to(row, {
-          x: oneSetWidth * direction * -1,
-          duration: (sourceItems.length * 2) / speed,
-          ease: "none",
-          repeat: -1,
-          repeatDelay: 0,
-        });
+        // Elementy są duplikowane 2x, więc animujemy przez jeden komplet
+        // i resetujemy dla gładkiego zapętlania
+        const animateRow = () => {
+          gsap.to(row, {
+            x: oneSetWidth * direction * -1,
+            duration: (sourceItems.length * 2) / speed,
+            ease: "none",
+            onComplete: () => {
+              gsap.set(row, { x: 0 });
+              animateRow(); // Powtórz animację
+            },
+          });
+        };
+        animateRow();
       });
     };
 
@@ -79,7 +82,7 @@ const GridMotion: FC<GridMotionProps> = ({
       <section
         className="w-full h-full overflow-hidden relative flex items-center justify-center"
         style={{
-          background: `radial-gradient(circle, ${gradientColor} 0%, transparent 100%)`,
+          background: "transparent",
         }}
       >
         <div className="absolute inset-0 pointer-events-none z-[4] bg-[length:250px]"></div>
