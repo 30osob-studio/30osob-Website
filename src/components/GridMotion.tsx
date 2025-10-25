@@ -7,11 +7,7 @@ interface GridMotionProps {
   speed?: number;
 }
 
-const GridMotion: FC<GridMotionProps> = ({
-  items = [],
-  gradientColor = "black",
-  speed = 1,
-}) => {
+const GridMotion: FC<GridMotionProps> = ({ items = [], speed = 0.1 }) => {
   const gridRef = useRef<HTMLDivElement>(null);
   const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
 
