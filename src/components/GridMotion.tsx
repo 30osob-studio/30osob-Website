@@ -19,12 +19,10 @@ const GridMotion: FC<GridMotionProps> = ({ items = [], speed = 0.1 }) => {
   const sourceItems = items.length > 0 ? items : defaultItems;
 
   const expandedItems = useMemo(() => {
-    const expanded = [
-      ...sourceItems,
-      ...sourceItems,
-      ...sourceItems,
-      ...sourceItems,
-    ];
+    // Duplicate items 8 times for smooth infinite loop
+    const expanded = Array(8)
+      .fill(null)
+      .flatMap(() => sourceItems);
     return expanded;
   }, [sourceItems]);
 
@@ -49,7 +47,6 @@ const GridMotion: FC<GridMotionProps> = ({ items = [], speed = 0.1 }) => {
           duration: sourceItems.length / speed,
           ease: "none",
           repeat: -1,
-          repeatRefresh: true,
         });
       });
     };
