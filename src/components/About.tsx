@@ -23,9 +23,9 @@ export default function About() {
         )}
       </div>
       <div className="absolute inset-0 bg-black/85 z-[10] overflow-hidden">
-        <div className="flex flex-col md:flex-row items-stretch h-full w-full md:gap-12 lg:gap-20 xl:gap-48 overflow-hidden">
-          <div className="flex flex-col text-white lato-regular justify-center items-center md:items-start text-center md:text-left w-full md:w-auto max-w-full order-2 md:order-1 min-h-0 overflow-hidden">
-            <p className="montserrat-bold text-[clamp(1.5rem,5vw,3.5rem)] max-w-[clamp(14rem,90vw,48rem)] m-0 p-0 break-words flex-shrink-0">
+        <div className="flex flex-col md:flex-row items-center h-full w-full overflow-hidden">
+          <div className="px-20 flex flex-col text-white lato-regular justify-center items-start text-left w-full md:w-auto max-w-full order-2 md:order-1 overflow-hidden">
+            <div className="montserrat-bold max-w-full h-[30%] flex-shrink-0 flex items-start justify-start">
               <TextType
                 text={[
                   "Welcome to 30osob",
@@ -37,13 +37,14 @@ export default function About() {
                 pauseDuration={1500}
                 showCursor={true}
                 cursorCharacter="."
+                className="text-left text-[clamp(1.75rem,5vw,3.5rem)] w-full block"
               />
-            </p>
-            <p className="text-[clamp(0.75rem,3.5vw,1.5rem)] max-w-[clamp(14rem,90vw,48rem)] m-0 p-0 mt-2 md:mt-4 lato-light break-words flex-1 overflow-y-auto">
+            </div>
+            <div className="h-[30%] text-[clamp(0.75rem,2.5vw,1.5rem)] max-w-full lato-light break-words flex-shrink-0">
               {about.readme}
-            </p>
+            </div>
           </div>
-          <div className="w-[clamp(18rem,60vw,45rem)] h-[clamp(18rem,60vw,45rem)] flex-shrink-0 order-1 md:order-2 max-w-[90vw] max-h-[85vh]">
+          <div className="px-10 w-[60%] h-[100%] flex-shrink-0 order-1 md:order-2 max-w-[90vw] max-h-full mx-auto md:mx-0">
             <Logo />
           </div>
         </div>
