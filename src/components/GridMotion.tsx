@@ -45,15 +45,14 @@ const GridMotion: FC<GridMotionProps> = ({
   ): string => {
     if (!responsiveConfig) return defaultValue || "30vw";
 
-    // Mobile: < 768px
     if (windowWidth < 768 && responsiveConfig.mobile !== undefined) {
       return responsiveConfig.mobile;
     }
-    // Tablet: 768px - 1024px
+
     if (windowWidth < 1024 && responsiveConfig.tablet !== undefined) {
       return responsiveConfig.tablet;
     }
-    // Desktop: >= 1024px
+
     if (responsiveConfig.desktop !== undefined) {
       return responsiveConfig.desktop;
     }
@@ -64,15 +63,14 @@ const GridMotion: FC<GridMotionProps> = ({
   const getResponsiveSpeed = (width: number): number => {
     if (!responsiveSpeed) return speed;
 
-    // Mobile: < 768px
     if (width < 768 && responsiveSpeed.mobile !== undefined) {
       return responsiveSpeed.mobile;
     }
-    // Tablet: 768px - 1024px
+
     if (width < 1024 && responsiveSpeed.tablet !== undefined) {
       return responsiveSpeed.tablet;
     }
-    // Desktop: >= 1024px
+
     if (responsiveSpeed.desktop !== undefined) {
       return responsiveSpeed.desktop;
     }
@@ -88,10 +86,12 @@ const GridMotion: FC<GridMotionProps> = ({
   const sourceItems = items.length > 0 ? items : defaultItems;
 
   const expandedItems = useMemo(() => {
-    const expanded = Array(8)
-      .fill(null)
-      .flatMap(() => sourceItems);
-    return expanded;
+    return Array.from({ length: totalRows }, () => {
+      const shuffled = [...sourceItems].sort(() => Math.random() - 0.5);
+      return Array(8)
+        .fill(null)
+        .flatMap(() => shuffled);
+    });
   }, [sourceItems]);
 
   useEffect(() => {
@@ -169,7 +169,7 @@ const GridMotion: FC<GridMotionProps> = ({
                 if (el) rowRefs.current[rowIndex] = el;
               }}
             >
-              {expandedItems.map((content, itemIndex) => (
+              {expandedItems[rowIndex].map((content, itemIndex) => (
                 <div
                   key={itemIndex}
                   className="flex-shrink-0"
