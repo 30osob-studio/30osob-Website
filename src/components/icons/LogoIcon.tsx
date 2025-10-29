@@ -6,11 +6,12 @@ export const LogoIcon: React.FC<IconProps> = ({
   className = "",
 }) => (
   <svg
-    width={size}
-    height={size * 0.486}
+    width={typeof size === 'number' ? size : undefined}
+    height={typeof size === 'number' ? size * 0.486 : undefined}
     viewBox="0 0 750 364.5"
     xmlns="http://www.w3.org/2000/svg"
-    className={className}
+    className={`${typeof size === 'string' ? size : ''} ${className}`}
+    style={typeof size === 'string' ? { width: '100vw', height: '100vw' } : undefined}
   >
     <defs>
       <style>{`.cls-1 { fill: ${color}; }`}</style>

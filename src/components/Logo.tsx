@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import MetallicPaint, { parseLogoImage } from "./MetallicPaint";
-import { LogoIcon } from "./icons";
 
-// Generate SVG string from LogoIcon for MetallicPaint processing
 function getLogoSvgString(): string {
   return `<svg width="750" height="364.5" viewBox="0 0 750 364.5" xmlns="http://www.w3.org/2000/svg">
     <defs>
@@ -19,9 +17,8 @@ function getLogoSvgString(): string {
   </svg>`;
 }
 
-export default function Logo() {
+export default function FullLogo() {
   const [imageData, setImageData] = useState<ImageData | null>(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadLogo = async () => {
@@ -31,30 +28,19 @@ export default function Logo() {
         setImageData(parsedImageData);
       } catch (error) {
         console.error("Failed to load logo:", error);
-      } finally {
-        setLoading(false);
       }
     };
 
     loadLogo();
   }, []);
 
-  if (loading || !imageData) {
-    return (
-      <div className="w-full h-40 flex items-center justify-center">
-        <div className="text-white">Loading logo...</div>
-      </div>
-    );
+  if (!imageData) {
+    return null;
   }
 
   return (
     <div className="w-full h-full flex items-center justify-center">
       <div className="relative w-full h-full">
-        {/* <LogoIcon
-          size={160}
-          color="#000000"
-          className="w-full h-full opacity-100"
-        /> */}
         <div className="absolute inset-0 z-10">
           <MetallicPaint imageData={imageData} />
         </div>
