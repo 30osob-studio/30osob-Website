@@ -1,17 +1,26 @@
+import { useMemo } from "react";
 import { useAbout } from "../hooks/useAbout";
-import { useAllRepos } from "../hooks/useAllRepos";
+import { useRepos } from "../hooks/useRepos";
 import GridMotion from "./GridMotion";
 import FullLogo from "./Logo";
 import { LogoIcon } from "./icons/LogoIcon";
 import TextType from "./TextType";
 
 export default function About() {
-  const { about, fallbackText } = useAbout();
-  const { repoImages } = useAllRepos();
+  const { about } = useAbout();
+  const { repos } = useRepos();
+
+  const repoImages = useMemo(() => {
+    if (!repos) return [];
+    return repos
+      .filter(repo => repo.repo_image)
+      .map(repo => repo.repo_image as string);
+  }, [repos]);
 
   if (!about) {
-    return <>{fallbackText && <div>{fallbackText}</div>}</>;
+    return null;
   }
+
   return (
     <div className="h-[180vw] sm:h-[100vw] lg:h-[40vw] w-full relative z-50 bg-black">
       <div className="bg-black h-full w-full z-0 opacity-25">
