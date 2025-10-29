@@ -5,7 +5,7 @@ export default function About() {
   const { about, fallbackText } = useAbout();
 
   if (!about) {
-    return <>{fallbackText && <div>{fallbackText}</div>}</>;
+    return null;
   }
 
   return (

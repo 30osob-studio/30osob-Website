@@ -19,7 +19,7 @@ export default function ProjectList({
   fallbackText,
 }: ProjectListProps) {
   if (!projects) {
-    return <>{fallbackText && <div>{fallbackText}</div>}</>;
+    return null;
   }
 
   return (

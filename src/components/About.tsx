@@ -10,8 +10,9 @@ export default function About() {
   const { repoImages } = useAllRepos();
 
   if (!about) {
-    return <>{fallbackText && <div>{fallbackText}</div>}</>;
+    return null;
   }
+
   return (
     <div className="h-[180vw] sm:h-[100vw] lg:h-[40vw] w-full relative z-50 bg-black">
       <div className="bg-black h-full w-full z-0 opacity-25">

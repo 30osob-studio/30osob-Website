@@ -5,7 +5,7 @@ export default function Owner() {
   const { owner, fallbackText } = useOwner();
 
   if (!owner) {
-    return <>{fallbackText && <div>{fallbackText}</div>}</>;
+    return null;
   }
 
   return (
