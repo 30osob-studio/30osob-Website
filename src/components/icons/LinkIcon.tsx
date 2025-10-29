@@ -7,14 +7,15 @@ export const LinkIcon: React.FC<IconProps> = ({
 }) => (
   <svg
     viewBox="0 0 24 24"
-    width={size}
-    height={size}
+    width={typeof size === 'number' ? size : undefined}
+    height={typeof size === 'number' ? size : undefined}
     stroke={color}
     strokeWidth={2}
     fill="none"
     strokeLinecap="round"
     strokeLinejoin="round"
     className={className}
+    style={typeof size === 'string' ? { width: size, height: size } : undefined}
   >
     <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
     <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
