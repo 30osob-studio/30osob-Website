@@ -1,16 +1,84 @@
-import { useEffect, useRef, useMemo, type FC } from "react";
+import { useEffect, useRef, useMemo, useState, type FC } from "react";
 import type { JSX } from "react";
 import { gsap } from "gsap";
+
+interface ResponsiveSpeed {
+  mobile?: number;
+  tablet?: number;
+  desktop?: number;
+}
+
+interface ResponsiveSize {
+  mobile?: string;
+  tablet?: string;
+  desktop?: string;
+}
 
 interface GridMotionProps {
   items?: (string | JSX.Element)[];
   gradientColor?: string;
   speed?: number;
+  responsiveSpeed?: ResponsiveSpeed;
+  itemWidth?: string;
+  itemHeight?: string;
+  responsiveWidth?: ResponsiveSize;
+  responsiveHeight?: ResponsiveSize;
 }
 
-const GridMotion: FC<GridMotionProps> = ({ items = [], speed = 0.1 }) => {
+const GridMotion: FC<GridMotionProps> = ({
+  items = [],
+  speed = 0.1,
+  responsiveSpeed,
+  itemWidth = "30vw",
+  itemHeight = "30vw",
+  responsiveWidth,
+  responsiveHeight,
+}) => {
   const gridRef = useRef<HTMLDivElement>(null);
   const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [windowWidth, setWindowWidth] = useState(typeof window !== "undefined" ? window.innerWidth : 1024);
+
+  const getResponsiveValue = (
+    windowWidth: number,
+    responsiveConfig?: ResponsiveSize,
+    defaultValue?: string
+  ): string => {
+    if (!responsiveConfig) return defaultValue || "30vw";
+
+    // Mobile: < 768px
+    if (windowWidth < 768 && responsiveConfig.mobile !== undefined) {
+      return responsiveConfig.mobile;
+    }
+    // Tablet: 768px - 1024px
+    if (windowWidth < 1024 && responsiveConfig.tablet !== undefined) {
+      return responsiveConfig.tablet;
+    }
+    // Desktop: >= 1024px
+    if (responsiveConfig.desktop !== undefined) {
+      return responsiveConfig.desktop;
+    }
+
+    return defaultValue || "30vw";
+  };
+
+  const getResponsiveSpeed = (width: number): number => {
+    if (!responsiveSpeed) return speed;
+
+    // Mobile: < 768px
+    if (width < 768 && responsiveSpeed.mobile !== undefined) {
+      return responsiveSpeed.mobile;
+    }
+    // Tablet: 768px - 1024px
+    if (width < 1024 && responsiveSpeed.tablet !== undefined) {
+      return responsiveSpeed.tablet;
+    }
+    // Desktop: >= 1024px
+    if (responsiveSpeed.desktop !== undefined) {
+      return responsiveSpeed.desktop;
+    }
+
+    return speed;
+  };
 
   const totalRows = 4;
   const defaultItems = Array.from(
@@ -20,7 +88,6 @@ const GridMotion: FC<GridMotionProps> = ({ items = [], speed = 0.1 }) => {
   const sourceItems = items.length > 0 ? items : defaultItems;
 
   const expandedItems = useMemo(() => {
-    // Duplicate items 8 times for smooth infinite loop
     const expanded = Array(8)
       .fill(null)
       .flatMap(() => sourceItems);
@@ -28,9 +95,23 @@ const GridMotion: FC<GridMotionProps> = ({ items = [], speed = 0.1 }) => {
   }, [sourceItems]);
 
   useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+
+  useEffect(() => {
     gsap.ticker.lagSmoothing(0);
 
     const handleResize = () => {
+      const currentSpeed = getResponsiveSpeed(windowWidth);
+      
       rowRefs.current.forEach((row, rowIndex) => {
         if (!row) return;
 
@@ -45,7 +126,7 @@ const GridMotion: FC<GridMotionProps> = ({ items = [], speed = 0.1 }) => {
 
         gsap.to(row, {
           x: oneSetWidth * direction * -1,
-          duration: sourceItems.length / speed,
+          duration: sourceItems.length / currentSpeed,
           ease: "none",
           repeat: -1,
         });
@@ -62,7 +143,10 @@ const GridMotion: FC<GridMotionProps> = ({ items = [], speed = 0.1 }) => {
         if (row) gsap.killTweensOf(row);
       });
     };
-  }, [sourceItems.length, speed]);
+  }, [sourceItems.length, speed, responsiveSpeed, itemWidth, itemHeight, responsiveWidth, responsiveHeight, windowWidth]);
+
+  const currentWidth = getResponsiveValue(windowWidth, responsiveWidth, itemWidth);
+  const currentHeight = getResponsiveValue(windowWidth, responsiveHeight, itemHeight);
 
   return (
     <div ref={gridRef} className="h-full w-full overflow-hidden">
@@ -90,8 +174,8 @@ const GridMotion: FC<GridMotionProps> = ({ items = [], speed = 0.1 }) => {
                   key={itemIndex}
                   className="flex-shrink-0"
                   style={{
-                    width: "clamp(120px, 20vw, 280px)",
-                    height: "clamp(120px, 20vw, 280px)",
+                    width: currentWidth,
+                    height: currentHeight,
                   }}
                 >
                   <div className="relative w-full h-full overflow-hidden rounded-[10px] md:rounded-[15px] bg-[#111] flex items-center justify-center text-white text-xs sm:text-sm md:text-base">
