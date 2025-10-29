@@ -16,7 +16,6 @@ interface ProjectListProps {
 
 export default function ProjectList({
   projects,
-  fallbackText,
 }: ProjectListProps) {
   if (!projects) {
     return null;

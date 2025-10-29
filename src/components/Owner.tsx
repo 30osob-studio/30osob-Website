@@ -2,7 +2,7 @@ import { useOwner } from "../hooks/useOwner";
 import { GitHubIcon, MailIcon } from "../components/icons";
 
 export default function Owner() {
-  const { owner, fallbackText } = useOwner();
+  const { owner } = useOwner();
 
   if (!owner) {
     return null;
