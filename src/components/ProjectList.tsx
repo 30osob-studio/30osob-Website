@@ -7,7 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay"
+import Autoplay from "embla-carousel-autoplay";
 
 interface ProjectListProps {
   projects: ReposData | null;
@@ -25,11 +25,11 @@ export default function ProjectList({
   return (
     <div className="flex justify-center w-full">
       <Carousel
-            plugins={[
-        Autoplay({
-          delay: 2000,
-        }),
-      ]}
+        plugins={[
+          Autoplay({
+            delay: 2000,
+          }),
+        ]}
         opts={{
           align: "start",
           loop: true,
@@ -48,7 +48,6 @@ export default function ProjectList({
         </CarouselContent>
         <CarouselPrevious className="-left-0 h-full py-100 w-7 rounded-none" />
         <CarouselNext className="-right-0 h-full w-7 rounded-none" />
-
       </Carousel>
     </div>
   );

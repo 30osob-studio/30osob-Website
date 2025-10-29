@@ -9,14 +9,28 @@ export default function About() {
   }
 
   return (
-    <footer className="bg-[rgba(0,0,0,1)] text-white p-5 flex flex-row justify-between">
-      <div className="flex flex-row gap-1">
-        <MailIcon></MailIcon>
-        {about.email}
+    <footer className="w-full bg-[rgba(0,0,0,1)] items-center text-white flex flex-row justify-between p-[1.2vw]">
+      <div className="flex flex-row gap-[1vw] items-center">
+                    <MailIcon 
+              color="white"
+              responsiveSize={{
+                mobile: "6.5vw",
+                tablet: "4.5vw",
+                desktop: "2.5vw"
+              }}
+            />
+        <p className="text-[5vw] sm:text-[3.5vw] md:text-[2vw] lg:text-[1.2vw] lato-bold">{about.email}</p>
+        
       </div>
-      <p>{about.twitter_username}</p>
-      <a href={about.html_url}>
-        <GitHubIcon size={24} color="white"></GitHubIcon>
+      <a href={about.html_url} className="items-center justify-center">
+                    <GitHubIcon 
+              color="white"
+              responsiveSize={{
+                mobile: "6.5vw",
+                tablet: "4.5vw",
+                desktop: "2.5vw"
+              }}
+            />
       </a>
     </footer>
   );
