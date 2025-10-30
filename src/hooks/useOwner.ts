@@ -16,6 +16,21 @@ function fetchWithTimeout(url: string, timeout: number = FETCH_TIMEOUT) {
     ]);
 }
 
+function sanitizeOwnerData(data: any): OwnerData {
+    return {
+        avatar_url: (data.avatar_url && typeof data.avatar_url === "string") ? data.avatar_url.trim() : "",
+        html_url: (data.html_url && typeof data.html_url === "string") ? data.html_url.trim() : "",
+        name: (data.name && typeof data.name === "string") ? data.name.trim() : "",
+        company: (data.company && typeof data.company === "string") ? data.company.trim() : "",
+        location: (data.location && typeof data.location === "string") ? data.location.trim() : "",
+        email: (data.email && typeof data.email === "string") ? data.email.trim() : "",
+        bio: (data.bio && typeof data.bio === "string") ? data.bio.trim() : "",
+        twitter_username: (data.twitter_username && typeof data.twitter_username === "string") ? data.twitter_username.trim() : "",
+        public_repos: (typeof data.public_repos === "number") ? data.public_repos : 0,
+        readme: (data.readme && typeof data.readme === "string") ? data.readme.trim() : "",
+    };
+}
+
 export function useOwner() {
     const [owner, setOwner] = useState<OwnerData | null>(null);
     const [fallbackText, setFallbackText] = useState<string>("");
@@ -46,9 +61,10 @@ export function useOwner() {
             .then(async (response) => {
                 const text = await response.text();
                 try {
-                    const parsed = JSON.parse(text) as OwnerData;
-                    setOwner(parsed);
-                    setCachedData(CACHE_KEY, parsed);
+                    const parsed = JSON.parse(text);
+                    const sanitized = sanitizeOwnerData(parsed);
+                    setOwner(sanitized);
+                    setCachedData(CACHE_KEY, sanitized);
                 } catch {
                     setOwner(null);
                     setFallbackText(text);
