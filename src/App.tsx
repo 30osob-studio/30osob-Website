@@ -9,8 +9,9 @@ import { useRepos } from "./hooks/useRepos";
 import { useOwnerRepos } from "./hooks/useOwnerRepos";
 import { useAbout } from "./hooks/useAbout";
 import { useOwner } from "./hooks/useOwner";
+import { ApiHealthProvider } from "./context/ApiHealthContext";
 
-function App() {
+function AppContent() {
   const { repos, fallbackText: reposFallbackText, isLoading: reposLoading } = useRepos();
   const { repos: ownerRepos, fallbackText: ownerReposFallbackText, isLoading: ownerReposLoading } =
     useOwnerRepos();
@@ -49,6 +50,14 @@ function App() {
       />
       <Footer></Footer>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <ApiHealthProvider>
+      <AppContent />
+    </ApiHealthProvider>
   );
 }
 

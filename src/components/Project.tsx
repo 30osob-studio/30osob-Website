@@ -19,10 +19,23 @@ interface ProjectProps {
 }
 
 export default function Project({ project }: ProjectProps) {
-  const creationDate = format(new Date(project.created_at), "MM.dd.yyyy");
-  const updatedDate = formatDistanceToNow(new Date(project.pushed_at), {
-    addSuffix: true,
-  });
+  const creationDate = project.created_at ? (() => {
+    try {
+      return format(new Date(project.created_at), "MM.dd.yyyy");
+    } catch {
+      return "N/A";
+    }
+  })() : "N/A";
+
+  const updatedDate = project.pushed_at ? (() => {
+    try {
+      return formatDistanceToNow(new Date(project.pushed_at), {
+        addSuffix: true,
+      });
+    } catch {
+      return "N/A";
+    }
+  })() : "N/A";
 
   return (
     <Card className="flex items-center bg-white overflow-hidden pt-0 h-full gap-3 border-black border-3">
@@ -40,12 +53,12 @@ export default function Project({ project }: ProjectProps) {
         <CardHeader className="gap-0 flex">
           <CardAction className="h-full flex items-center justify-center">
             <a
-              href={project.homepage || ""}
+              href={project.homepage || project.html_url || "#"}
               target="_blank"
               rel="noopener noreferrer"
             >
               <CardTitle className="text-[clamp(2rem,2vw,2rem)] font-bold text-black break-words w-full">
-                {project.name.replace(/-/g, " ")}
+                {(project.name || "Unknown Project").replace(/-/g, " ")}
               </CardTitle>
             </a>
           </CardAction>
