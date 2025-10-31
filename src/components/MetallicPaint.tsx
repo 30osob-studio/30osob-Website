@@ -381,7 +381,7 @@ export default function MetallicPaint({
   params = defaultParams,
 }: {
   imageData: ImageData;
-  params: ShaderParams;
+  params?: ShaderParams;
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [gl, setGl] = useState<WebGL2RenderingContext | null>(null);
