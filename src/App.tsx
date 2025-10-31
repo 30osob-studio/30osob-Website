@@ -12,11 +12,26 @@ import { useOwner } from "./hooks/useOwner";
 import { ApiHealthProvider } from "./context/ApiHealthContext";
 
 function AppContent() {
-  const { repos, fallbackText: reposFallbackText, isLoading: reposLoading } = useRepos();
-  const { repos: ownerRepos, fallbackText: ownerReposFallbackText, isLoading: ownerReposLoading } =
-    useOwnerRepos();
-  const { about, fallbackText: aboutFallbackText, isLoading: aboutLoading } = useAbout();
-  const { owner, fallbackText: ownerFallbackText, isLoading: ownerLoading } = useOwner();
+  const {
+    repos,
+    fallbackText: reposFallbackText,
+    isLoading: reposLoading,
+  } = useRepos();
+  const {
+    repos: ownerRepos,
+    fallbackText: ownerReposFallbackText,
+    isLoading: ownerReposLoading,
+  } = useOwnerRepos();
+  const {
+    about,
+    fallbackText: aboutFallbackText,
+    isLoading: aboutLoading,
+  } = useAbout();
+  const {
+    owner,
+    fallbackText: ownerFallbackText,
+    isLoading: ownerLoading,
+  } = useOwner();
 
   const [forceShowContent, setForceShowContent] = useState(false);
 
@@ -28,7 +43,9 @@ function AppContent() {
     return () => clearTimeout(timeoutId);
   }, []);
 
-  const isLoading = (reposLoading || ownerReposLoading || aboutLoading || ownerLoading) && !forceShowContent;
+  const isLoading =
+    (reposLoading || ownerReposLoading || aboutLoading || ownerLoading) &&
+    !forceShowContent;
 
   return (
     <div className="w-full text-[1vw]">
