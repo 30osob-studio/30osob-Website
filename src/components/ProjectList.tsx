@@ -25,7 +25,7 @@ export default function ProjectList({ projects }: ProjectListProps) {
       : projects;
 
   return (
-    <div className="flex justify-center w-full">
+    <div className="flex justify-center w-full bg-black">
       <Carousel
         plugins={[
           Autoplay({
