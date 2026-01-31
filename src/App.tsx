@@ -5,6 +5,7 @@ import Owner from "./components/Owner";
 import ProjectsCounter from "./components/ProjectsCounter";
 import Footer from "./components/Footer";
 import LoadingScreen from "./components/LoadingScreen";
+import Separator from "./components/Separator";
 import { useRepos } from "./hooks/useRepos";
 import { useOwnerRepos } from "./hooks/useOwnerRepos";
 import { useAbout } from "./hooks/useAbout";
@@ -51,20 +52,26 @@ function AppContent() {
     <div className="w-full text-[1vw]">
       <LoadingScreen isVisible={isLoading} />
       <About />
+      <Separator />
       <ProjectsCounter
         count={about?.public_repos}
         fallbackText={aboutFallbackText}
       />
+      <Separator />
       <ProjectList projects={repos} fallbackText={reposFallbackText} />
+      <Separator />
       <Owner />
+      <Separator />
       <ProjectsCounter
         count={owner?.public_repos}
         fallbackText={ownerFallbackText}
       />
+      <Separator />
       <ProjectList
         projects={ownerRepos}
         fallbackText={ownerReposFallbackText}
       />
+      <Separator />
       <Footer></Footer>
     </div>
   );

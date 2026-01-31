@@ -9,7 +9,7 @@ export default function Owner() {
   }
 
   return (
-    <div className="lato-regular w-full border-b border-gray-400 bg-black text-white flex flex-col md:flex-row justify-center py-[6vw] lg:py-[3vw] gap-6 break-words items-center">
+    <div className="lato-regular w-full bg-black text-white flex flex-col md:flex-row justify-center py-[6vw] lg:py-[3vw] gap-6 break-words items-center">
       <img
         className="rounded-full w-[30vw] h-[30vw] lg:w-[15vw] lg:h-[15vw]"
         src={owner.avatar_url}
